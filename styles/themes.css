@@ -4,3 +4,81 @@
 ✦ theme-light — класс светлой темы
 ✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
 */
+:root.theme-light {
+  --bg-color: #fff;
+  --accent-color: #000;
+  --gradient-color-1: #d3d3d3;
+  --gradient-color-2: #e7e7e7;
+  --gradient-color-3: #1a1a1a;
+  --contour-color: #000;
+  --sparks-color: #f00;
+}
+
+:root.theme-dark {
+  --bg-color: #000;
+  --accent-color: #00cc14;
+  --gradient-color-1: #000;
+  --gradient-color-2: #007f0c;
+  --gradient-color-3: #004306;
+  --contour-color: var(--accent-color);
+}
+
+.theme-dark {
+  .button__text {
+    color: var(--accent-color);
+  }
+
+  .footer .floppy {
+    stroke: var(--accent-color);
+  }
+
+  .save-dialog .floppy {
+    color: var(--accent-color);
+    stroke: var(--accent-color);
+  }
+
+  .save-dialog::backdrop {
+    --accent-color: var(--bg-color);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #000;
+    --accent-color: #00cc14;
+    --gradient-color-1: #000;
+    --gradient-color-2: #007f0c;
+    --gradient-color-3: #004306;
+    --contour-color: var(--accent-color);
+  }
+
+  .button__text {
+    color: currentColor;
+  }
+
+  .footer .floppy {
+    stroke: var(--accent-color);
+  }
+
+  .save-dialog .floppy {
+    stroke: var(--accent-color);
+  }
+
+  .save-dialog::backdrop {
+    background: var(--bg-color);
+  }
+
+  .theme-light {
+    .button__text {
+      color: var(--bg-color);
+    }
+
+    .footer .floppy {
+      stroke: var(--bg-color);
+    }
+
+    .save-dialog::backdrop {
+      background: var(--accent-color);
+    }
+  }
+}
