@@ -17,19 +17,19 @@
 .page {
   margin: 0 auto;
   color: var(--accent-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, sans-serif), sans-serif;
   background-color: var(--bg-color);
   background-image: repeating-linear-gradient(
       to right,
-      var(--gradient-color-1),
+      var(--brand-gradient-color) 2px,
       transparent 2px
     ),
-    repeating-linear-gradient(var(--gradient-color-1), transparent 2px),
+    repeating-linear-gradient(var(--brand-gradient-color), transparent 2px),
     linear-gradient(
-      var(--gradient-color-2) 0%,
-      var(--gradient-color-2) 0.01%,
-      var(--gradient-color-3),
-      var(--gradient-color-3) 100%
+      var(--accent-gradient-color) 0%,
+      var(--accent-gradient-color) 0.01%,
+      var(--secondary-gradient-color),
+      var(--secondary-gradient-color) 100%
     );
   background-size: cover;
   background-attachment: fixed;
@@ -45,7 +45,7 @@
   border: 2px solid currentColor;
   padding-block-start: clamp(7.5rem, 6.3462rem + 4.9231vw, 8.5rem);
   padding-block-end: 25px;
-  font-family: var(--accent-font, system-ui);
+  font-family: var(--accent-font, system-ui), system-ui;
   background-color: var(--bg-color);
 }
 
@@ -78,12 +78,16 @@
   font-size: 14px;
   text-transform: uppercase;
   background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button::after {
   content: "";
   position: absolute;
   display: block;
+  left: 0;
+  top: 15px;
   width: 0;
   height: 3px;
   background-color: var(--accent-color);
@@ -110,8 +114,6 @@
 
 .theme-menu__button:hover {
   opacity: 0.6;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
 }
 
 .theme-menu__button:focus {
@@ -120,12 +122,7 @@
   transition: opacity 0.3s ease;
 }
 
-.content,
-.footer {
-  background-color: var(--bg-color);
-}
-
-.content-list {
+.content {
   display: grid;
   gap: 50px;
 }
@@ -145,6 +142,7 @@
   display: block;
   width: 100%;
   min-height: 375px;
+  border: 2px solid currentColor;
 }
 
 .decorated-text {
@@ -153,7 +151,7 @@
   top: 20px;
   right: 13px;
   opacity: 0.5;
-  font-family: var(--accent-font, system-ui);
+  font-family: var(--accent-font, system-ui), system-ui;
   font-size: 14px;
   text-transform: uppercase;
   text-shadow: -1px 0 var(--shadow-color), 0 1px var(--shadow-color),
@@ -162,11 +160,7 @@
   mix-blend-mode: hard-light;
 }
 
-.desigions,
-.care,
-.support,
-.lifes-styles,
-.experience {
+.text-low {
   text-transform: lowercase;
 }
 
@@ -184,18 +178,17 @@
   font-variation-settings: "wgth" var(--card-title-weight);
 }
 
-.card__memories,
-.card__description {
+.card__text {
   padding-inline: 25px;
 }
 
-.card__description {
-  padding-block-start: clamp(1.5625rem, 1.4375rem + 0.5714vw, 1.6875rem);
+.card__text:nth-of-type(1) {
+  margin-block-start: clamp(1.5625rem, 1.4375rem + 0.5714vw, 1.6875rem);
   padding-block-end: 27px;
 }
 
-.card__memories {
-  padding-block-end: 25px;
+.card__text:nth-of-type(2) {
+  margin-block-end: 25px;
 }
 
 .card__buttons-wrapper {
@@ -226,10 +219,12 @@
 
 .button {
   border: 2px solid currentColor;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, system-ui), system-ui;
   font-size: 14px;
   line-height: 90%;
   background-color: var(--bg-color);
+  position: relative;
+  cursor: pointer;
 }
 
 .card__like-button {
@@ -241,9 +236,7 @@
   padding-block: 11px;
 }
 
-.card__like-button::after,
-.save-button::after,
-.save-dialog__button::after {
+.button::after {
   content: "";
   position: absolute;
   top: 0;
@@ -255,32 +248,20 @@
   transition: width 0.5s ease-in-out;
 }
 
-.card__like-button:hover::after,
-.save-button:hover::after,
-.save-dialog__button:hover::after {
+.button:hover::after {
   width: 100%;
 }
 
-.card__like-button:hover,
-.save-button:hover,
-.save-dialog__button:hover {
-  cursor: pointer;
-}
-
-.card__like-button:focus,
-.save-button:focus,
-.save-dialog__button:focus {
+.button:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible,
-.save-button:focus-visible,
-.save-dialog__button:focus-visible {
+.button:focus-visible {
   box-shadow: 2px 2px 0 var(--accent-color);
   transition: box-shadow 0.3s ease;
 }
 
-.footer {
+.button-wrapper {
   display: grid;
   justify-content: center;
   padding-block: 50px 100px;
@@ -296,19 +277,19 @@
 }
 
 .button__text {
-  --text-color: var(--bg-color);
+  --text-color: var(--button-text);
   position: relative;
   z-index: 1;
   color: var(--text-color);
   mix-blend-mode: difference;
 }
 
-.footer .floppy {
+.button-wrapper .floppy {
   z-index: 1;
   width: 28px;
   height: 28px;
   margin-block-end: 8px;
-  stroke: var(--bg-color);
+  stroke: var(--button-text);
   mix-blend-mode: difference;
 }
 
@@ -435,11 +416,11 @@
 
 .save-dialog::backdrop {
   opacity: 0.75;
-  background: var(--accent-color);
+  background: var(--brand-gradient-color);
 }
 
 .save-dialog__description {
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, system-ui), system-ui;
   font-size: 14px;
   line-height: 150%;
   text-transform: uppercase;
@@ -454,12 +435,17 @@
   position: relative;
 }
 
+.save-dialog .floppy {
+  color: var(--accent-color);
+  stroke: var(--accent-color);
+}
+
 @media (width >= 1440px) {
   .save-button {
     flex-direction: row;
   }
 
-  .footer .floppy {
+  .button-wrapper .floppy {
     width: 21px;
     height: 21px;
     margin-inline-end: 8px;
@@ -473,38 +459,4 @@
   .decorated-text {
     right: 25px;
   }
-}
-
-@keyframes arrow-animation {
-  from {
-    left: -17px;
-  }
-
-  to {
-    left: -21px;
-  }
-}
-
-@keyframes heart-scale {
-  from {
-    scale: 1;
-  }
-
-  to {
-    scale: 1.5;
-  }
-}
-
-@keyframes sparks {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.floppy:hover {
-  fill: red;
 }
