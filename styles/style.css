@@ -21,10 +21,10 @@
   background-color: var(--bg-color);
   background-image: repeating-linear-gradient(
       to right,
-      var(--brand-gradient-color) 2px,
-      transparent 2px
+      var(--brand-gradient-color) 0 2px,
+      transparent 2px 4px
     ),
-    repeating-linear-gradient(var(--brand-gradient-color), transparent 2px),
+    repeating-linear-gradient(var(--brand-gradient-color) 0 2px, transparent 2px 4px),
     linear-gradient(
       var(--accent-gradient-color) 0%,
       var(--accent-gradient-color) 0.01%,
@@ -142,7 +142,8 @@
   display: block;
   width: 100%;
   min-height: 375px;
-  border: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
 }
 
 .decorated-text {
@@ -178,17 +179,13 @@
   font-variation-settings: "wgth" var(--card-title-weight);
 }
 
+.card__content-wrapper {
+  display: grid;
+  gap: 25.5px;
+}
+
 .card__text {
   padding-inline: 25px;
-}
-
-.card__text:nth-of-type(1) {
-  margin-block-start: clamp(1.5625rem, 1.4375rem + 0.5714vw, 1.6875rem);
-  padding-block-end: 27px;
-}
-
-.card__text:nth-of-type(2) {
-  margin-block-end: 25px;
 }
 
 .card__buttons-wrapper {
@@ -416,7 +413,7 @@
 
 .save-dialog::backdrop {
   opacity: 0.75;
-  background: var(--brand-gradient-color);
+  background: var(--backdrop-color);
 }
 
 .save-dialog__description {

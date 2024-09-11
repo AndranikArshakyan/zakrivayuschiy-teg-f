@@ -13,6 +13,7 @@
   --contour-color: #000;
   --sparks-color: #f00;
   --button-text: #fff;
+  --backdrop-color: #000;
 }
 
 :root.theme-dark {
@@ -23,6 +24,7 @@
   --secondary-gradient-color: #004306;
   --contour-color: var(--accent-color);
   --button-text: #00cc14;
+  --backdrop-color: #000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,5 +36,6 @@
     --secondary-gradient-color: #004306;
     --contour-color: var(--accent-color);
     --button-text: #00cc14;
+    --backdrop-color: #000;
   }
 }
