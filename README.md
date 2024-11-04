@@ -5,4 +5,4 @@
 
 Технологии: HTML/CSS, BEM, Flex/Grid для адаптивности.
 
-Лайв-демка: https://github.com/AndranikArshakyan/zakrivayuschiy-teg-f
+Лайв-демка: https://andranikarshakyan.github.io/zakrivayuschiy-teg-f/
